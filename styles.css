@@ -1,6 +1,7 @@
 :root {
-  --paper: #fbfaf7;
+  --paper: #ffffff;
   --ink: #111111;
+  --grid: #a6a6a6;
   --axis: #5f5f5f;
 }
 
@@ -12,22 +13,19 @@ html,
 body {
   margin: 0;
   min-height: 100%;
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.95), transparent 40%),
-    linear-gradient(180deg, #f2f0ec 0%, #f7f5f1 100%);
+  background: #ffffff;
   color: var(--ink);
   font-family: "Libre Baskerville", Georgia, serif;
 }
 
 .page {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 24px;
+  min-height: auto;
+  display: block;
+  padding: 0;
 }
 
 .frame {
-  width: min(100%, 900px);
+  width: min(100%, 1380px);
 }
 
 #chart {
@@ -35,6 +33,7 @@ body {
   width: 100%;
   height: auto;
   background: var(--paper);
+  margin: 0;
 }
 
 text {
@@ -45,7 +44,7 @@ text {
 .title-text {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 700;
-  letter-spacing: 0.35px;
+  letter-spacing: 0.4px;
 }
 
 .label-text {

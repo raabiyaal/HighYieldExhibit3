@@ -1,9 +1,9 @@
 const svg = document.getElementById("chart");
 const data = window.EXHIBIT3_DATA;
 
-const width = 763;
-const height = 487;
-const margin = { top: 30, right: 48, bottom: 90, left: 84 };
+const width = 1357;
+const height = 816;
+const margin = { top: 28, right: 92, bottom: 124, left: 116 };
 const plotWidth = width - margin.left - margin.right;
 const plotHeight = height - margin.top - margin.bottom;
 const plotLeft = margin.left;
@@ -61,15 +61,15 @@ const series = data.series.map((d) => {
 const defs = make("defs");
 const hatch = make("pattern", {
   id: "loss-hatch",
-  width: "5",
-  height: "5",
+  width: "6",
+  height: "6",
   patternUnits: "userSpaceOnUse",
 }, defs);
-make("rect", { width: "5", height: "5", fill: "#ffffff" }, hatch);
+make("rect", { width: "6", height: "6", fill: "#ffffff" }, hatch);
 make("path", {
-  d: "M 2.5 0 L 2.5 5",
+  d: "M 3 0 L 3 6",
   stroke: "#ff3b30",
-  "stroke-width": "1.1",
+  "stroke-width": "1.5",
 }, hatch);
 
 const clip = make("clipPath", { id: "plot-clip" }, defs);
@@ -85,7 +85,7 @@ make("rect", {
   y: plotTop,
   width: plotWidth,
   height: plotHeight,
-  fill: "#fbfaf7",
+  fill: "#ffffff",
 });
 
 const gridValues = Array.from({ length: 10 }, (_, index) => index * 0.2);
@@ -97,7 +97,7 @@ gridValues.forEach((value) => {
     x2: plotRight,
     y2: y,
     stroke: value === 0 ? "#777777" : "#a8a8a8",
-    "stroke-width": value === 0 ? 1.2 : 1,
+    "stroke-width": value === 0 ? 1.4 : 1,
   });
 });
 
@@ -150,7 +150,7 @@ make("path", {
   d: linePath(series.map((d) => [d.x, d.totalTopY])),
   fill: "none",
   stroke: "#111111",
-  "stroke-width": "2.1",
+  "stroke-width": "3.2",
   "stroke-linejoin": "round",
   "stroke-linecap": "round",
 }, areaGroup);
@@ -159,21 +159,21 @@ make("path", {
   d: linePath(series.map((d) => [d.x, d.mortgageTopY])),
   fill: "none",
   stroke: "#111111",
-  "stroke-width": "1.5",
+  "stroke-width": "2.2",
 }, areaGroup);
 
 make("path", {
   d: linePath(series.map((d) => [d.x, d.mezzTopY])),
   fill: "none",
   stroke: "#111111",
-  "stroke-width": "1.5",
+  "stroke-width": "2.2",
 }, areaGroup);
 
 make("path", {
   d: linePath(series.map((d) => [d.x, d.frequencyY])),
   fill: "none",
   stroke: "#c247ac",
-  "stroke-width": "3.7",
+  "stroke-width": "5.5",
   "stroke-linejoin": "round",
   "stroke-linecap": "round",
 }, areaGroup);
@@ -185,8 +185,8 @@ make("line", {
   x2: meanX,
   y2: frequencyScale(frequencyMax),
   stroke: "#c247ac",
-  "stroke-width": "1.2",
-  "stroke-dasharray": "5 4",
+  "stroke-width": "2.2",
+  "stroke-dasharray": "9 8",
 }, areaGroup);
 
 make("rect", {
@@ -196,25 +196,25 @@ make("rect", {
   height: plotHeight,
   fill: "none",
   stroke: "#666666",
-  "stroke-width": "1.5",
+  "stroke-width": "2",
 });
 
 gridValues.forEach((value) => {
   const y = yScale(value);
   make("line", {
-    x1: plotLeft - 6,
+    x1: plotLeft - 8,
     y1: y,
     x2: plotLeft,
     y2: y,
     stroke: "#666666",
-    "stroke-width": "1.5",
+    "stroke-width": "2",
   });
 
   make("text", {
-    x: plotLeft - 12,
-    y: y + 4,
+    x: plotLeft - 18,
+    y: y + 6,
     "text-anchor": "end",
-    "font-size": "14",
+    "font-size": "20",
     "font-weight": "700",
     class: "label-text",
   }).textContent = `$${value.toFixed(2)}`;
@@ -231,30 +231,30 @@ xTicks.forEach((tick) => {
     x1: x,
     y1: plotBottom,
     x2: x,
-    y2: plotBottom + 5,
+    y2: plotBottom + 7,
     stroke: "#666666",
-    "stroke-width": "1.2",
+    "stroke-width": "1.8",
   });
 
   make("text", {
     x,
-    y: plotBottom + 9,
-    transform: `rotate(-90 ${x} ${plotBottom + 9})`,
+    y: plotBottom + 12,
+    transform: `rotate(-90 ${x} ${plotBottom + 12})`,
     "text-anchor": "end",
-    "font-size": "12",
+    "font-size": "17",
     "font-weight": "700",
     class: "label-text",
   }).textContent = formatPercent(tick);
 });
 
-for (let y = plotTop + 74; y < plotBottom; y += 106) {
+for (let y = plotTop + 84; y < plotBottom; y += 112) {
   make("line", {
     x1: plotRight,
     y1: y,
-    x2: plotRight + 5,
+    x2: plotRight + 6,
     y2: y,
     stroke: "#666666",
-    "stroke-width": "1.1",
+    "stroke-width": "1.6",
   });
 }
 
@@ -262,7 +262,7 @@ const text = (content, x, y, options = {}) => {
   const node = make("text", {
     x,
     y,
-    "font-size": options.fontSize ?? 15,
+    "font-size": options.fontSize ?? 20,
     "font-weight": options.weight ?? 700,
     "text-anchor": options.anchor ?? "middle",
     fill: options.fill ?? "#111111",
@@ -275,35 +275,35 @@ const text = (content, x, y, options = {}) => {
 
 make("text", {
   x: width / 2,
-  y: height - 16,
+  y: height - 18,
   "text-anchor": "middle",
-  "font-size": "16",
+  "font-size": "22",
   class: "title-text",
 }).textContent = "Asset-Level Returns";
 
 make("text", {
-  x: 16,
+  x: 22,
   y: height / 2,
-  transform: `rotate(-90 16 ${height / 2})`,
+  transform: `rotate(-90 22 ${height / 2})`,
   "text-anchor": "middle",
-  "font-size": "16",
+  "font-size": "22",
   class: "title-text",
 }).textContent = "Total Payoff for Every $1 Invested";
 
 make("text", {
-  x: width - 14,
+  x: width - 26,
   y: height / 2,
-  transform: `rotate(90 ${width - 14} ${height / 2})`,
+  transform: `rotate(90 ${width - 26} ${height / 2})`,
   "text-anchor": "middle",
-  "font-size": "16",
+  "font-size": "22",
   class: "title-text",
 }).textContent = "Frequency";
 
-text("First Mortgage", xScale(-0.29), yScale(0.45), { fontSize: 13 });
-text("Mezzanine Debt", xScale(0.015), yScale(0.78), { fontSize: 13 });
-text("Investors", xScale(0.43), yScale(1.12), { fontSize: 13 });
+text("First Mortgage", xScale(-0.29), yScale(0.45), { fontSize: 18 });
+text("Mezzanine Debt", xScale(0.015), yScale(0.78), { fontSize: 18 });
+text("Investors", xScale(0.43), yScale(1.12), { fontSize: 18 });
 text("Operator", xScale(0.56), yScale(1.495), {
-  fontSize: 12,
+  fontSize: 16,
   fill: "#ffffff",
   transform: `rotate(-18 ${xScale(0.56)} ${yScale(1.46)})`,
 });
